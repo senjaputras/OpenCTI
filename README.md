@@ -6,3 +6,5 @@ It already add a few connector:
 2. OTX (Allienvault)
 3. VulnCheck
 4. CISA (cisa-known-exploited-vulnerabilities)
+
+Dont forget to change {YOUR_API_KEY}
