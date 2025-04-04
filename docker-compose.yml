@@ -232,7 +232,7 @@ services:
       - CONNECTOR_LOG_LEVEL=error
       - CONNECTOR_DURATION_PERIOD=PT30M # In ISO8601 Format starting with "P" for Period ex: "PT30M" = Period time of 30 minutes
       - ALIENVAULT_BASE_URL=https://otx.alienvault.com
-      - ALIENVAULT_API_KEY={YOUR_API_KEY}
+      - ALIENVAULT_API_KEY=9a30ae93ced9aeeff555279ef8b5a61d176a95a2ac36145afa314127475ce9d3
       - ALIENVAULT_TLP=White
       - ALIENVAULT_CREATE_OBSERVABLES=true
       - ALIENVAULT_CREATE_INDICATORS=true
@@ -308,7 +308,7 @@ services:
 
       # Connector's custom execution parameters
       - CONNECTOR_VULNCHECK_API_BASE_URL=https://api.vulncheck.com/v3
-      - CONNECTOR_VULNCHECK_API_KEY={YOUR_API_KEY}
+      - CONNECTOR_VULNCHECK_API_KEY=vulncheck_b5c732f44c8e3466f98649bbc3cb36132056894d6a2ae22eba4f44c613ba6862
       - CONNECTOR_VULNCHECK_DATA_SOURCES=botnets,epss,exploits,initial-access,ipintel,nist-nvd2,ransomware,snort,suricata,threat-actors,vulncheck-kev,vulncheck-nvd2
 
       # Add proxy parameters below if needed
@@ -316,7 +316,18 @@ services:
       # - HTTPS_PROXY=CHANGEME
       # - NO_PROXY=CHANGEME
     restart: always
-    
+  connector-shodan-internetdb:
+    image: opencti/connector-shodan-internetdb:6.5.3
+    environment:
+      - OPENCTI_URL=http://opencti:8080
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_ANALYSIS_ID}
+      - CONNECTOR_NAME=Shodan InternetDB
+      - CONNECTOR_SCOPE=IPv4-Addr
+      - CONNECTOR_AUTO=true
+      - CONNECTOR_LOG_LEVEL=error
+      - SHODAN_SSL_VERIFY=true
+    restart: always 
 volumes:
   esdata:
   s3data:
