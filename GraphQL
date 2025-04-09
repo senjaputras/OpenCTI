@@ -1,0 +1,19 @@
+This is for GraphQL query
+
+query {
+  stixCyberObservables(
+    search: "blackfriday-shoe.top"
+    types: ["Domain-Name"]
+    first: 5
+  ) {
+    edges {
+      node {
+        id
+        observable_value
+        entity_type
+        created
+        updated
+      }
+    }
+  }
+}
